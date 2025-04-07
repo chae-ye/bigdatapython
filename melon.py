@@ -1,33 +1,38 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-import time
+import requests
+from bs4 import BeautifulSoup
+import random
 
-# 크롬 웹드라이버 경로 설정 (chromedriver 경로를 지정하세요)
-driver_path = '/path/to/chromedriver'  # 예: C:/chromedriver/chromedriver.exe
-driver = webdriver.Chrome(executable_path=driver_path)
+# 멜론 차트 페이지 URL
+url = 'https://www.melon.com/chart/index.htm'  # 멜론의 최신 차트 URL로 확인 필요
 
-# 멜론 탑100 페이지 열기
-url = "https://www.melon.com/chart/index.htm"
-driver.get(url)
+# 헤더 설정 (멜론은 User-Agent 확인을 통해 봇 접근을 차단할 수 있으므로 설정이 필요할 수 있음)
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
+}
 
-# 페이지 로딩 대기 (자바스크립트로 동적 데이터 로딩을 기다림)
-time.sleep(3)  # 필요한 대기 시간은 네트워크 상태에 따라 다를 수 있음
+# 웹페이지 요청
+response = requests.get(url, headers=headers)
 
-# 차트 항목들 찾기
-songs = driver.find_elements(By.CSS_SELECTOR, '.wrap_song_info')
+# HTML 파싱
+soup = BeautifulSoup(response.text, 'html.parser')
 
-# 곡 제목과 아티스트 정보를 저장할 리스트
-top_100 = []
+# 노래 제목과 아티스트를 담을 리스트
+songs = []
 
-# 곡 제목과 아티스트 추출
+# 멜론 차트의 노래 제목과 아티스트를 찾습니다.
+#lst50 #frm > div > table > tbody #lst50
+for entry in soup.select('tr.lst50, tr.lst100'):  # 상위 50위 및 100위 목록
+    rank = entry.select_one('span.rank').get_text()
+    title = entry.select_one('div.ellipsis.rank01 a').get_text()
+    artist = entry.select_one('div.ellipsis.rank02 a').get_text()
+    songs.append((rank, title, artist))
+
+# 수집한 데이터를 출력합니다.
 for song in songs:
-    title = song.find_element(By.CSS_SELECTOR, '.ellipsis.rank01').text
-    artist = song.find_element(By.CSS_SELECTOR, '.ellipsis.rank02').text
-    top_100.append({"Title": title, "Artist": artist})
+    print(f"{song[0]}. {song[1]} - {song[2]}")
 
-# 결과 출력
-for idx, song in enumerate(top_100, 1):
-    print(f"{idx}. {song['Title']} - {song['Artist']}")
 
-# 브라우저 종료
-driver.quit()
+# 멜론 차트 100 중에서 노래 한곡 추천 해주는 서비스 만들기
+ai_song = random.choice(songs)
+print(f"추천곡은 {ai_song[1]} - {ai_song[2]} 입니다.") 
+
