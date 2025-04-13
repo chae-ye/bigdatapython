@@ -105,4 +105,4 @@ while True:
         search_artist_and_get_songs(artist)
 
     elif n == "6":
-        print(" 1~6 사이 숫자를 입력해주세요.")
+        print(" 1~5 사이 숫자를 입력해주세요.")
