@@ -74,21 +74,21 @@ for i in range(50):
 # 만약에 3을 입력하면
 # 멜론 10 출력
 elif n== "3":
-   print("멜론 10")
-   for i in range(10):
+print("멜론 10")
+for i in range(10):
         print(f"{songs[i][0]}. {songs[i][1]} - {songs[i][2]}")
 
 # 만약에 4을 입력하면
 # 멜론 AI 추천 노래 출력
 elif n== "4":
-   print("AI 추천 노래")
-   ai_song = random.choice(songs)
-   print(f"추천곡은 {ai_song[1]} - {ai_song[2]} 입니다.") 
+print("AI 추천 노래")
+ai_song = random.choice(songs)
+print(f"추천곡은 {ai_song[1]} - {ai_song[2]} 입니다.") 
 
 # 5를 입력하면 가수이름을 검색할수있는 입력창 필요
 # 이름을 입력하면 해당 가수이름의 노래가 출력
 elif n== "5":
- import requests
+import requests
 from bs4 import BeautifulSoup
 import urllib.parse
 
