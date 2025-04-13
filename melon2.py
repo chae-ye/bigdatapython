@@ -44,6 +44,7 @@ print(f"추천곡은 {ai_song[1]} - {ai_song[2]} 입니다.")
 # 5. 가수 이름 검색
 # 6. 1~5까지 입력하시오
 
+
 print("=================")
 print("1. 멜론 100 ")
 print("2. 멜론 50 ")
@@ -59,15 +60,15 @@ print(f"당신이 입력한 값은? {n}")
 # 만약에 1을 입력하면
 # 멜론 100 출력
 if n == "1":
-    print("멜론 100")
-    for i in range(100):
-        print(f"{songs[i][0]}. {songs[i][1]} - {songs[i][2]}")
+     print("멜론 100")
+for i in range(100):
+    print(f"{songs[i][0]}. {songs[i][1]} - {songs[i][2]}")
 
 # 만약에 2를 입력하면 
 # 멜론 50 출력
 elif n== "2":
- print("멜론 50")
- for i in range(50):
+print("멜론 50")
+for i in range(50):
         print(f"{songs[i][0]}. {songs[i][1]} - {songs[i][2]}")
 
 # 만약에 3을 입력하면
@@ -142,3 +143,4 @@ search_artist_and_get_songs(artist)
  # 6을 입력하면 1~5까지 입력하시오를 출력
 if n == "6":
     print("1~5까지 입력하시오")
+n= input("메뉴선택(숫자입력): ")
