@@ -60,12 +60,25 @@ def search_artist_and_get_songs(artist_name):
     for i, title in enumerate(songs, 1):
         print(f"{i}. {title}")
 
+#csv
+import csv
+
+# CSV 파일 쓰기
+with open('output.csv', mode='w', newline='', encoding='utf-8') as file:
+    csv_writer = csv.writer(file)
+    # 헤더 작성
+    csv_writer.writerow(['순위', '제목', '가수'])
+    # 데이터 행 작성
+    csv_writer.writerow(['1', 30, 'New York'])
+    csv_writer.writerow(['2', 25, 'Los Angeles'])
+
 # 1. 멜론 100
 # 2. 멜론 50
 # 3. 멜론 10
 # 4. AI 추천 노래 출력
 # 5. 가수 이름 검색
-# 6. 1~5까지 입력하시오
+# 6. 파일에 저장(멜론 100)
+
 # 반복 메뉴
 while True:
     print("\n=================")
@@ -74,7 +87,7 @@ while True:
     print("3. 멜론 10")
     print("4. AI 추천 노래")
     print("5. 가수 이름 검색")
-    print("6. 1~5까지 입력하세요")
+    print("6. 파일에 저장(멜론 100)")
     print("=================")
 
     n = input("메뉴선택(숫자입력): ")
@@ -98,11 +111,11 @@ while True:
     elif n == "4":
         print("AI 추천 노래")
         ai_song = random.choice(songs)
-        print(f"추천곡은 🎵 {ai_song[1]} - {ai_song[2]} 입니다.")
+        print(f"추천곡은 {ai_song[1]} - {ai_song[2]} 입니다.")
 
     elif n == "5":
         artist = input("검색할 가수 이름을 입력하세요: ")
         search_artist_and_get_songs(artist)
 
     elif n == "6":
-        print(" 1~5 사이 숫자를 입력해주세요.")
+        print(" 파일에 저장합니다.")
