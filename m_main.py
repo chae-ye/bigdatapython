@@ -1,4 +1,5 @@
 import func
+from func import songs
 
 
 # 사용자의 입력을 받아서 멜론 차트 출력 프로그램 만들기
@@ -21,51 +22,39 @@ import func
 # func.m000("멜론 내맘대로 출력", 7)
 
 
-import func
-
 # 사용자의 입력을 받아서 멜론 차트 출력 프로그램 만들기
 # 각각 기능(함수)을 만들어서 메인 파일에서 코드 작성
 
+
+
 while True:
     print("\n=================")
-    print("m100. 멜론 100")
-    print("m50. 멜론 50")
-    print("m10. 멜론 10")
+    print("a. 멜론 100")
+    print("b. 멜론 50")
+    print("c. 멜론 10")
     print("d. AI 추천 노래")
     print("e. 가수 이름 검색")
     print("f. 파일에 저장(멜론 100)")
     print("g. 원하는 만큼의 순위")
-    print("x. 종료")
     print("=================")
-
+    
     n = input("메뉴선택(알파벳 입력): ")
     print(f"\n당신이 입력한 값은: {n}\n")
 
-    if n == 'm100':
+    if n == 'a':
         func.m100("멜론 100")
-    
     elif n == 'b':
         func.m50("멜론 50")
-    
     elif n == 'c':
         func.m10("멜론 10")
-    
     elif n == 'd':
-        func.m_random("노래추천 기능")
-    
+        func.m_random("AI 추천 노래")
     elif n == 'e':
         singer = input("검색할 가수 이름을 입력하세요: ")
         func.search_singer(singer)
-    
     elif n == 'f':
         func.save_to_file("melon100.txt")
-    
     elif n == 'g':
-        func.m000("멜론 내맘대로 출력")
-    
-    elif n == 'x':
-        print("프로그램을 종료합니다.")
-        break
-    
+        func.m000("내가 원하는 멜론 순위만큼")
     else:
         print("잘못된 입력입니다. 다시 입력해주세요.")
